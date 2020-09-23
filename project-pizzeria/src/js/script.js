@@ -1,7 +1,7 @@
 /* global Handlebars, utils, dataSource */ // eslint-disable-line no-unused-vars
 
 {
-  'use strict';
+  ('use strict');
 
   const select = {
     templateOf: {
@@ -45,13 +45,14 @@
       defaultValue: 1,
       defaultMin: 1,
       defaultMax: 9,
-    }
+    },
   };
 
   const templates = {
-    menuProduct: Handlebars.compile(document.querySelector(select.templateOf.menuProduct).innerHTML),
+    menuProduct: Handlebars.compile(
+      document.querySelector(select.templateOf.menuProduct).innerHTML
+    ),
   };
-
 
   class Product {
     constructor(id, data) {
@@ -82,19 +83,27 @@
     initAccordion() {
       const thisProduct = this;
 
-      console.log(document.querySelectorAll('.product__header'));
+      const clickableElement = thisProduct.element.querySelector(
+        '.product__header'
+      );
 
-      document.querySelectorAll(select.menuProduct.clickable).forEach(item => item.addEventListener('click', function () {
+      clickableElement.addEventListener('click', function (e) {
+        e.preventDefault();
 
-        console.log(item);
-      }));
+        thisProduct.element.classList.toggle(
+          classNames.menuProduct.wrapperActive
+        );
 
+        const activeProducts = document.querySelectorAll('.product.active');
+
+        activeProducts.forEach((item) => {
+          if (item !== thisProduct.element) {
+            item.classList.remove('active');
+          }
+        });
+      });
     }
-
-
   }
-
-
 
   const app = {
     initMenu: function () {
@@ -103,7 +112,6 @@
       console.log('thisApp.data', thisApp.data);
 
       for (let productData in thisApp.data.products) {
-
         new Product(productData, thisApp.data.products[productData]);
       }
     },
