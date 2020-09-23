@@ -60,6 +60,7 @@
       thisProduct.data = data;
       console.log('new Product:', thisProduct);
       thisProduct.renderInMenu();
+      thisProduct.initAccordion();
     }
 
     renderInMenu() {
@@ -69,14 +70,28 @@
       const generateHTML = templates.menuProduct(thisProduct.data);
 
       // create element using utils.createElementFromHTML
-      const divElement = utils.createDOMFromHTML(generateHTML);
+      thisProduct.element = utils.createDOMFromHTML(generateHTML);
 
       // find menu container
-      const menuContainer = document.querySelector('.product-list');
-    
+      const menuContainer = document.querySelector(select.containerOf.menu);
+
       // add element to menu
-      menuContainer.appendChild(divElement);
+      menuContainer.appendChild(thisProduct.element);
     }
+
+    initAccordion() {
+      const thisProduct = this;
+
+      console.log(document.querySelectorAll('.product__header'));
+
+      document.querySelectorAll(select.menuProduct.clickable).forEach(item => item.addEventListener('click', function () {
+
+        console.log(item);
+      }));
+
+    }
+
+
   }
 
 
