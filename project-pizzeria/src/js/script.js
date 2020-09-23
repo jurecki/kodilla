@@ -59,10 +59,10 @@
       const thisProduct = this;
       thisProduct.id = id;
       thisProduct.data = data;
-      console.log('new Product:', thisProduct);
       thisProduct.renderInMenu();
       thisProduct.getElements();
       thisProduct.initAccordion();
+      thisProduct.initOrderForm();
     }
 
     renderInMenu() {
@@ -123,12 +123,53 @@
 
     initOrderForm() {
       const thisProduct = this;
-      console.log('initOrderForm', thisProduct);
+
+      thisProduct.form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        thisProduct.processOrder();
+      });
+
+      thisProduct.formInputs.forEach((form) =>
+        form.addEventListener('change', function () {
+          thisProduct.processOrder();
+        })
+      );
+
+      thisProduct.cartButton.addEventListener('click', function (e) {
+        e.preventDefault();
+        thisProduct.processOrder();
+      });
     }
 
     processOrder() {
       const thisProduct = this;
-      console.log('procesOrder', thisProduct);
+      const formData = utils.serializeFormToObject(thisProduct.form);
+      // console.log('formData', formData);
+      // console.log('data', thisProduct.data);
+
+      let price = thisProduct.data.price;
+
+      for (let paramId in thisProduct.data.params) {
+        for (let optionId in thisProduct.data.params[paramId].options) {
+          const optionSelected =
+            formData.hasOwnProperty(paramId) &&
+            formData[paramId].indexOf(optionId) > -1;
+
+          const isDefault = !thisProduct.data.params[paramId].options[optionId]
+            .default;
+
+          const optionPrice =
+            thisProduct.data.params[paramId].options[optionId].price;
+
+          if (optionSelected && isDefault) {
+            price += optionPrice;
+          } else if (!optionSelected && !isDefault) {
+            price -= optionPrice;
+          }
+        }
+      }
+
+      thisProduct.priceElem.textContent = price;
     }
   }
 
