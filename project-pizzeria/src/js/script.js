@@ -212,7 +212,7 @@
       const thisWidget = this;
 
       thisWidget.getElements(element);
-
+      thisWidget.value = settings.amountWidget.defaultValue;
       thisWidget.setValue(thisWidget.input.value);
       thisWidget.initActions();
 
@@ -233,13 +233,17 @@
     setValue(value) {
       const thisWidget = this;
 
+      // thisWidget.value = settings.amountWidget.defaultValue;
+
       const newValue = parseInt(value);
 
+
       // TODO: Add validation
+      if (newValue !== thisWidget.value && (newValue >= settings.amountWidget.defaultMin && newValue <= settings.amountWidget.defaultMax)) {
+        thisWidget.value = newValue;
+        thisWidget.annouce();
+      }
 
-      thisWidget.value = newValue;
-
-      thisWidget.annouce();
 
       thisWidget.input.value = thisWidget.value;
 
@@ -250,7 +254,9 @@
     initActions() {
       const thisWidget = this;
 
-      thisWidget.input.addEventListener('change', thisWidget.setValue(thisWidget.input.value));
+      thisWidget.input.addEventListener('change', function () {
+        thisWidget.setValue(thisWidget.input.value);
+      });
 
       thisWidget.linkDecrease.addEventListener('click', function (e) {
         e.preventDefault();
