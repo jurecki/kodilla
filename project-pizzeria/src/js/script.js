@@ -398,6 +398,10 @@
         thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
       });
 
+      thisCart.dom.productList.addEventListener('remove', function (event) {
+        thisCart.remove(event.detail.cartProduct);
+      });
+
       thisCart.dom.form.addEventListener('submit', function (event) {
         event.preventDefault();
         // console.log('send order');
@@ -569,7 +573,7 @@
       thisCartProduct.dom.remove.addEventListener('click', function (e) {
         e.preventDefault();
         thisCartProduct.remove();
-        // console.log('remove');
+        console.log('remove');
       });
     }
   }
