@@ -1,20 +1,21 @@
-import { settings, select, classNames, templates } from './settings.js';
+import { settings, select, classNames } from './settings.js';
 import Product from './components/Product.js';
 import Cart from './components/Cart.js';
+import Booking from './components/Booking.js';
 
 const app = {
   initPages: function () {
     const thisApp = this;
 
     thisApp.pages = document.querySelector(select.containerOf.pages).children;
-    console.log('pages', thisApp.pages);
+    // console.log('pages', thisApp.pages);
 
 
     thisApp.navLinks = document.querySelectorAll(select.nav.links);
-    console.log('navLinks', thisApp.navLinks);
+    // console.log('navLinks', thisApp.navLinks);
 
     const idFromHash = window.location.hash.substring(2);
-    console.log(idFromHash);
+    // console.log(idFromHash);
     const pageMatchingHash = thisApp.pages[0].id;
 
     for (let page of thisApp.pages) {
@@ -62,7 +63,7 @@ const app = {
   initMenu: function () {
     const thisApp = this;
 
-    console.log('thisApp.data', thisApp.data);
+    // console.log('thisApp.data', thisApp.data);
 
     for (let productData in thisApp.data.products) {
       new Product(thisApp.data.products[productData].id, thisApp.data.products[productData]);
@@ -81,7 +82,7 @@ const app = {
         return rawResponse.json();
       })
       .then(function (parsedResponse) {
-        console.log('parsedResponse', parsedResponse);
+        // console.log('parsedResponse', parsedResponse);
 
         /*save parsedResponse at thisApp.data.prodcuts */
         thisApp.data.products = parsedResponse;
@@ -89,7 +90,7 @@ const app = {
         thisApp.initMenu();
       });
 
-    console.log('thisApp.data', JSON.stringify(thisApp.data));
+    // console.log('thisApp.data', JSON.stringify(thisApp.data));
   },
 
   initCart: function () {
@@ -106,18 +107,26 @@ const app = {
     });
   },
 
+  initBooking: function () {
+    const thisApp = this;
+    const bookingContainer = document.querySelector(select.containerOf.booking);
+
+    thisApp.booking = new Booking(bookingContainer);
+  },
+
   init: function () {
     const thisApp = this;
-    console.log('*** App starting ***');
-    console.log('thisApp:', thisApp);
-    console.log('classNames:', classNames);
-    console.log('settings:', settings);
-    console.log('templates:', templates);
+    // console.log('*** App starting ***');
+    // console.log('thisApp:', thisApp);
+    // console.log('classNames:', classNames);
+    // console.log('settings:', settings);
+    // console.log('templates:', templates);
 
     thisApp.initPages();
     thisApp.initData();
 
     thisApp.initCart();
+    thisApp.initBooking();
   },
 };
 
