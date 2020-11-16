@@ -1,0 +1,35 @@
+@import '../../styles/settings.scss';
+
+.component {
+    padding: $base-size;
+}
+
+.title {
+    padding: $base-size 0;
+    text-align: center;
+    font-size: ($base-size*2);
+    text-transform: uppercase;
+    @include mq(smartphone-large) {
+        padding: ($base-size*3) 0;
+        font-size: ($base-size*3)
+    }
+}
+
+.subtitle {
+    padding: $base-size 0;
+    text-align:center;
+    font-size: ($base-size);
+    font-style: italic;
+    font-weight: normal;
+      @include mq(smartphone-large) {
+        padding: ($base-size*2) 0;
+        font-size: ($base-size*2)
+    }
+}
+
+.title + .subtitle {
+    margin-top: (-$base-size);
+    @include mq(smartphone-large) {
+        margin-top: (-$base-size*3);
+    }
+}
