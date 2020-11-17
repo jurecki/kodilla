@@ -1,0 +1,10 @@
+@import '../../styles/settings.scss';
+
+.container {
+padding: 0 0 $base-size 0;
+}
+
+.description {
+margin: 0 ($base-size*3);
+text-align: center;
+}

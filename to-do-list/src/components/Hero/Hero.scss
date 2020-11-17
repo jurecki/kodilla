@@ -6,7 +6,9 @@
     background: $color-dark;
     margin: 0 0 ($base-size*3) 0;
     border-radius: $radius;
-      @include mq(smartphone-large) {
+    
+
+    @include mq(smartphone-large) {
          min-height: ($base-size *15);
     }
      @include mq(tablet) {
@@ -19,6 +21,9 @@
     top: 50%;
     left: 50%;
     z-index: 2;
+    min-width: 80%;
+    text-shadow: 2px 2px 2px black;
+    text-align: center;
     text-transform: uppercase;
     transform: translate(-50%, -50%);
      @include mq(smartphone-large) {
