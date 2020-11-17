@@ -59,5 +59,13 @@ export const listData = {
 };
 
 export const settings = {
-    defaultListDescription: '<p> I can do all the things!!</p>'
+ columnCreatorText: 'Add new column',
+  cardCreatorText: 'Add new card',
+  creator: {
+    buttonOK: 'OK',
+    buttonCancel: 'Cancel',
+    defaultText: 'Add new item',
+  },
+  defaultListDescription: '<p>I can do all the things!!!</p>',
+  defaultColumnIcon: 'list-alt',
 }

@@ -17,3 +17,10 @@
     text-align: center;
     margin: $base-size;
 }
+
+.icon > * {
+  padding-right: $base-size;
+  color: $color-warning;
+  font-size: ($base-size * 2);
+  vertical-align: middle;
+}

@@ -19,3 +19,12 @@ text-align: center;
          flex-direction: row;
     }
 }
+
+.creator {
+    width: calc(33%-12px);
+    margin: $base-size auto 0;
+
+    input {
+        box-shadow: 5px 5px 15px 5px #000000;
+    }
+}
