@@ -8,3 +8,14 @@ padding: 0 0 $base-size 0;
 margin: 0 ($base-size*3);
 text-align: center;
 }
+
+.columns {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+     @include mq(smartphone-large) {
+         flex-wrap: wrap;
+         flex-direction: row;
+    }
+}

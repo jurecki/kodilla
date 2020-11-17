@@ -1,0 +1,19 @@
+@import '../../styles/settings.scss';
+
+.component {
+    margin: $base-size;
+    background-color: purple;
+
+    @include mq(smartphone-large) {
+         width: 45%;
+    }
+
+     @include mq(tablet) {
+         width: 30%;
+    }
+}
+
+.title {
+    text-align: center;
+    margin: $base-size;
+}
