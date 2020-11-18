@@ -1,16 +1,14 @@
 import React from 'react';
 import styles from './List.scss';
 import Hero from '../Hero/Hero';
-import Column from '../Column/Column';
+import Column from '../Column/ColumnContainer';
 import Creator from '../Creator/Creator';
 import PropTypes from 'prop-types';
 import {settings} from '../../data/dataStore';
 import ReactHtmlParser from 'react-html-parser';
 
 class List extends React.Component {
-state = {
-  columns: this.props.columns || [],
-}
+
 static propTypes = {
   title: PropTypes.node.isRequired,
   description: PropTypes.node,
@@ -24,43 +22,27 @@ static defaultProps = {
   description: settings.defaultListDescription,
 }
 
-addColumn = (title) => {
-  this.setState(state => ( {
-    columns: [
-      ...state.columns,
-      {
-        key: state.columns.length ? state.columns[state.columns.length-1].key+1 : 0,
-        title,
-        icon: 'list-alt',
-        cards:[],
-      },
-    ],
-  }));
-}
-
 showList = () => {
   const container = document.querySelector('section');
   container.style.opacity = 1;
 }
 
-
-
-
 render() {
+  const {title, imageSmall, imageNormal, imageBig, description, columns} = this.props;
   return (
     <div>
       <button onClick={this.showList} className={styles.showList}>ShowList</button>
       <section className={styles.container}>
-        <Hero titleText={this.props.title} 
-          imageSmall={this.props.imageSmall}
-          imageBig = {this.props.imageBig}
-          imageNormal = {this.props.imageNormal}
+        <Hero titleText={title} 
+          imageSmall={imageSmall}
+          imageBig = {imageBig}
+          imageNormal = {imageNormal}
         />
         <div className={styles.description}>
-          {ReactHtmlParser(this.props.description)}
+          {ReactHtmlParser(description)}
         </div>
         <div className={styles.columns}>
-          {this.state.columns.map(column => <Column key={column.key} title={column.title}  icon={column.icon} cards={column.cards} />)}
+          {columns.map(columnData => <Column key={columnData.id} {...columnData} />)}
         </div>
         <div className={styles.creator}>
           <Creator text={settings.columnCreatorText} action={title=>{this.addColumn(title);}}/>
