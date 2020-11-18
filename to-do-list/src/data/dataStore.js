@@ -6,6 +6,7 @@ export const pageContents = {
 export const settings = {
   columnCreatorText: 'Add new column',
   cardCreatorText: 'Add new card',
+  listCreatorText: 'Add new list',
   creator: {
     buttonOK: 'OK',
     buttonCancel: 'Cancel',
@@ -16,6 +17,7 @@ export const settings = {
     icon: 'search',
   },
   defaultListDescription: '<p>I can do all the things!!!</p>',
+  defaultListImage: '../../../public/images/space_normal.png',
   defaultColumnIcon: 'list-alt',
 };
 

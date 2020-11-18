@@ -21,18 +21,19 @@ static propTypes = {
 
 static defaultProps = {
   description: settings.defaultListDescription,
+  imageNormal: settings.defaultListImage,
 }
 
-showList = () => {
-  const container = document.querySelector('section');
-  container.style.opacity = 1;
-}
+// showList = () => {
+//   const container = document.querySelector('section');
+//   container.style.opacity = 1;
+// }
 
 render() {
   const {title, imageSmall, imageNormal, imageBig, description, columns,addColumn} = this.props;
   return (
     <div>
-      <button onClick={this.showList} className={styles.showList}>ShowList</button>
+      {/* <button onClick={this.showList} className={styles.showList}>ShowList</button> */}
       <section className={styles.container}>
         <Hero titleText={title} 
           imageSmall={imageSmall}
