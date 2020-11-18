@@ -1,6 +1,6 @@
 export const pageContents = {
-    title: 'My first React app',
-    subtitle: 'A simple to-do app, with lists, columns and cards'
+  title: 'My first React app',
+  subtitle: 'A simple to-do app, with lists, columns and cards',
 };
 
 export const listData = {
@@ -59,7 +59,7 @@ export const listData = {
 };
 
 export const settings = {
- columnCreatorText: 'Add new column',
+  columnCreatorText: 'Add new column',
   cardCreatorText: 'Add new card',
   creator: {
     buttonOK: 'OK',
@@ -68,4 +68,4 @@ export const settings = {
   },
   defaultListDescription: '<p>I can do all the things!!!</p>',
   defaultColumnIcon: 'list-alt',
-}
+};

@@ -1,7 +1,22 @@
 @import '../../styles/settings.scss';
+.showList {
+    display: block;
+    box-sizing: border-box;
+    width: 120px;
+    height: 40px;
+    background-color: purple;
+    color: white;
+    margin: 0 auto;
+    margin-bottom: 20px;
 
+    // &:hover ~.container {
+    //     background-color: black;
+    //     opacity: 1;
+    // }
+}
 .container {
 padding: 0 0 $base-size 0;
+opacity: 0;
 }
 
 .description {

@@ -9,52 +9,66 @@ import ReactHtmlParser from 'react-html-parser';
 
 class List extends React.Component {
 state = {
-    columns: this.props.columns || [],
+  columns: this.props.columns || [],
 }
 static propTypes = {
-    title: PropTypes.node.isRequired,
-    description: PropTypes.node,
-    columns: PropTypes.array,
+  title: PropTypes.node.isRequired,
+  description: PropTypes.node,
+  columns: PropTypes.array,
+  imageSmall: PropTypes.node,
+  imageBig: PropTypes.node,
+  imageNormal: PropTypes.node,
 }
 
 static defaultProps = {
-    description: settings.defaultListDescription,
+  description: settings.defaultListDescription,
 }
 
 addColumn = (title) => {
-    this.setState(state => ( {
-        columns: [
-            ...state.columns,
-            {
-                key: state.columns.length ? state.columns[state.columns.length-1].key+1 : 0,
-                title,
-                icon: 'list-alt',
-                cards:[]
-            }
-        ]
-    }))
+  this.setState(state => ( {
+    columns: [
+      ...state.columns,
+      {
+        key: state.columns.length ? state.columns[state.columns.length-1].key+1 : 0,
+        title,
+        icon: 'list-alt',
+        cards:[],
+      },
+    ],
+  }));
 }
 
-    render() {
-        return (
-            <section className={styles.container}>
-                <Hero titleText={this.props.title} 
-                imageSmall={this.props.imageSmall}
-                imageBig = {this.props.imageBig}
-                imageNormal = {this.props.imageNormal}
-                />
-                <div className={styles.description}>
-                {ReactHtmlParser(this.props.description)}
-                </div>
-                <div className={styles.columns}>
-                    {this.state.columns.map(column => <Column key={column.key} title={column.title}  icon={column.icon} cards={column.cards} />)}
-                </div>
-                <div className={styles.creator}>
-                   <Creator text={settings.columnCreatorText} action={title=>{this.addColumn(title)}}/>
-                </div>
-            </section>
-        )
-    }
+showList = () => {
+  const container = document.querySelector('section');
+  container.style.opacity = 1;
+}
+
+
+
+
+render() {
+  return (
+    <div>
+      <button onClick={this.showList} className={styles.showList}>ShowList</button>
+      <section className={styles.container}>
+        <Hero titleText={this.props.title} 
+          imageSmall={this.props.imageSmall}
+          imageBig = {this.props.imageBig}
+          imageNormal = {this.props.imageNormal}
+        />
+        <div className={styles.description}>
+          {ReactHtmlParser(this.props.description)}
+        </div>
+        <div className={styles.columns}>
+          {this.state.columns.map(column => <Column key={column.key} title={column.title}  icon={column.icon} cards={column.cards} />)}
+        </div>
+        <div className={styles.creator}>
+          <Creator text={settings.columnCreatorText} action={title=>{this.addColumn(title);}}/>
+        </div>
+      </section>
+    </div>
+  );
+}
 }
 
 export default List;
