@@ -11,15 +11,20 @@ class Column extends React.Component {
       title: PropTypes.node,
       cards: PropTypes.array,
       icon: PropTypes.node,
+      addCard: PropTypes.func,
+    }
+
+    static defaultProps = {
+      icon: settings.defaultColumnIcon,
     }
 
     render() {
-      const {title, icon, cards} =this.props;
+      const {title, icon, cards, addCard} =this.props;
       return(
         <section className = {styles.component}>
           <h3 className={styles.title}>{title}<span className={styles.icon}><Icon name={icon}/></span></h3>
           {cards.map(card => <Card title={card.title} key={card.id}/>)}
-          <Creator text={settings.cardCreatorText} action={title=>{this.addCard(title);}}/>
+          <Creator text={settings.cardCreatorText} action={addCard}/>
         </section>
       );
     }

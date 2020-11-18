@@ -16,6 +16,7 @@ static propTypes = {
   imageSmall: PropTypes.node,
   imageBig: PropTypes.node,
   imageNormal: PropTypes.node,
+  addColumn: PropTypes.func,
 }
 
 static defaultProps = {
@@ -28,7 +29,7 @@ showList = () => {
 }
 
 render() {
-  const {title, imageSmall, imageNormal, imageBig, description, columns} = this.props;
+  const {title, imageSmall, imageNormal, imageBig, description, columns,addColumn} = this.props;
   return (
     <div>
       <button onClick={this.showList} className={styles.showList}>ShowList</button>
@@ -45,7 +46,7 @@ render() {
           {columns.map(columnData => <Column key={columnData.id} {...columnData} />)}
         </div>
         <div className={styles.creator}>
-          <Creator text={settings.columnCreatorText} action={title=>{this.addColumn(title);}}/>
+          <Creator text={settings.columnCreatorText} action={addColumn}/>
         </div>
       </section>
     </div>
