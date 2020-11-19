@@ -7,11 +7,14 @@ const mapStateToProps = (state,props) => ( {
  
 });
 
-const mapDispatchToProps = (dispatch, props) => ({
-  addCard: title => dispatch(createActionAddCard({
-    columnId: props.id,
-    title,
-  })),
-});
+const mapDispatchToProps = (dispatch, props) => {
+  console.log('props', props);
+  return({
+    addCard: title => dispatch(createActionAddCard({
+      columnId: props.id,
+      title,
+    })),
+  });
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Column);

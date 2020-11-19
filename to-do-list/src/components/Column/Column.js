@@ -31,7 +31,6 @@ class Column extends React.Component {
                 {cards.map(card => <Card title={card.title} key={card.id} id={card.id} index={card.index}/>)}
               </div>
             )}
-            
           </Droppable>
           <Creator text={settings.cardCreatorText} action={addCard}/>
         </section>
