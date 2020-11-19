@@ -3,6 +3,7 @@ import shortid from 'shortid';
 //selectors
 export const getCardsForColumn = (state, columnId) => state.cards.filter(card => (card.columnId == columnId && new RegExp(state.searchString, 'i').test(card.title)));
 
+
 // action name creator
 const reducerName = 'cards';
 const createActionName = name => `app/${reducerName}/${name}`;
