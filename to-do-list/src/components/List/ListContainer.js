@@ -3,7 +3,7 @@ import List from './List';
 import {getColumnsForList, createActionAddColumn} from '../../redux/columnsRedux';
 
 const mapStateToProps = (state ,props) => {
-  console.log('stat', state, props.id);
+  // console.log('stat', state, props.id);
   return ( {
     columns: getColumnsForList(state, props.id),
        
