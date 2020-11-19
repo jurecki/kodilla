@@ -7,7 +7,11 @@ const baseConfig = () => ({
   entry: './src/index.js',
   output: {
     path: path.join(__dirname, 'dist'),
+    publicPath: '/',
     filename: 'scripts_bundle.js',
+  },
+  devServer: {
+    historyApiFallback: true,
   },
   module: {
     rules: [
@@ -44,26 +48,26 @@ const devConfig = () => ({
           'sass-loader',
         ],
       },
-       {
+      {
         test: /\.(jpg|svg|giv|png|jpeg)$/,
         use: [{
           loader: 'file-loader',
           options: {
             name: '[name][contenthash:6].[ext]',
             outputPath: 'images',
-        }}, {
+          }}, {
           loader: 'image-webpack-loader',
           options: {
             mozjpeg: {
               quality: 50,
               progressive: true,
-            }
-          }
-        }]
+            },
+          },
+        }],
         
-      }
-    ]
-  }})
+      },
+    ],
+  }});
 
 const prodConfig = () => ({
   module: {

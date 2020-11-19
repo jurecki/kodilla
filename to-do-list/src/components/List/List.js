@@ -6,6 +6,7 @@ import Creator from '../Creator/Creator';
 import PropTypes from 'prop-types';
 import {settings} from '../../data/dataStore';
 import ReactHtmlParser from 'react-html-parser';
+import Container from '../Container/Contianer';
 
 class List extends React.Component {
 
@@ -24,16 +25,10 @@ static defaultProps = {
   imageNormal: settings.defaultListImage,
 }
 
-// showList = () => {
-//   const container = document.querySelector('section');
-//   container.style.opacity = 1;
-// }
-
 render() {
   const {title, imageSmall, imageNormal, imageBig, description, columns,addColumn} = this.props;
   return (
-    <div>
-      {/* <button onClick={this.showList} className={styles.showList}>ShowList</button> */}
+    <Container > 
       <section className={styles.container}>
         <Hero titleText={title} 
           imageSmall={imageSmall}
@@ -50,7 +45,7 @@ render() {
           <Creator text={settings.columnCreatorText} action={addColumn}/>
         </div>
       </section>
-    </div>
+    </Container>
   );
 }
 }
